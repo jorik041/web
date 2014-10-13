@@ -1,0 +1,22 @@
+upstream apache_server {
+		server localhost:8000;
+	}
+#proxy_cache_path /var/cache/nginx levels=2 keys_zone=mycache:5m inactive=15m max_size=100m;
+server {	
+
+		root /home/mikhail/ask_pupkin/;
+		gzip_static on;
+		expires 1M;
+		add_header Cache-Control public;
+		location / {
+			    proxy_pass       http://apache_server;
+   			    proxy_set_header Host      $host;
+    			    proxy_set_header X-Real-IP $remote_addr;
+    		}
+		location ~* \.(js|css|jpeg|jpg) {
+			alias /home/mikhail/ask_pupkin/static;    			
+		}
+		
+	}
+
+
