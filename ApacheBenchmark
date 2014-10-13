@@ -1,0 +1,37 @@
+Server Software:        Apache/2.4.7
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /helloworld.wsgi
+Document Length:        15 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.695 seconds
+Complete requests:      50000
+Failed requests:        0
+Keep-Alive requests:    49511
+Total transferred:      10128494 bytes
+HTML transferred:       750000 bytes
+Requests per second:    2415.99 [#/sec] (mean)
+Time per request:       4.139 [ms] (mean)
+Time per request:       0.414 [ms] (mean, across all concurrent requests)
+Transfer rate:          477.94 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       1
+Processing:     0    4  55.5      1    3712
+Waiting:        0    4  55.5      1    3712
+Total:          0    4  55.5      1    3712
+
+Percentage of the requests served within a certain time (ms)
+  50%      1
+  66%      2
+  75%      2
+  80%      2
+  90%      3
+  95%      4
+  98%      7
+  99%      9
+ 100%   3712 (longest request)
+
