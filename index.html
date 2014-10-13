@@ -1,0 +1,35 @@
+ <HTML>
+
+<HEAD>
+<style>
+h1 {
+	font-family: 'Comic Sans MS', cursive;	
+	color: pink;
+	font-size: 1300%;
+}
+</style>
+<script type="text/javascript">
+massive_length=2;/*устанавливаешь длинну массива, т.е. сколько цветов будет*/
+colors_= new Array(massive_length);
+colors_[0] = "black";
+colors_[1] = "white";
+var next_ = 0;
+function Changehead()
+{
+headcolor= colors_[next_];/*headcolor - переменной устанавливаешь новый цвет*/
+
+document.getElementById("head3").style.color=headcolor;/*присваеваешь этот цвет элементу в документе*/
+next_++;
+if(next_>massive_length-1) next_=0;
+window.setTimeout("Changehead()",175); /*спустя 1 секунду, меняешь цвет на новый, если нужно дольше, то ставишь число больше*/
+}
+</script>
+
+</HEAD>
+<BODY onload="Changehead();/*скрипт запускается когда документ загрузился полностью*/">
+<h1>
+<P id="head3">    Mail.ru</P>
+</font>
+</h1>
+</BODY>
+</HTML>
