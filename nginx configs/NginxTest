@@ -16,7 +16,7 @@ server {
 		location ~* \.(js|css|jpeg|jpg|html) {
 			alias /home/mikhail/ask_pupkin/static;    			
 		}
-		location /uploads {
+		location ^~ /uploads {
 			alias /home/mikhail/ask_pupkin/uploads;
 		}
 		
