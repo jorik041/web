@@ -17,5 +17,12 @@ def application(env, start_response):
 			answer += parsed.get(param,[''])[0]
 			answer += '\n'
 	elif env['REQUEST_METHOD'] == 'POST':
-		answer += env['wsgi.input'].read()	
+		toparse = env['QUERY_STRING']
+		parsed = parse_qs(toparse)
+		answer = "Hello world \n \n"
+		for (param, value) in parsed.items():
+			answer += param
+			answer += ' = '
+			answer += parsed.get(param,[''])[0]
+			answer += '\n'
 	return [answer]

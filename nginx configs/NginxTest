@@ -13,8 +13,11 @@ server {
    			    proxy_set_header Host      $host;
     			    proxy_set_header X-Real-IP $remote_addr;
     		}
-		location ~* \.(js|css|jpeg|jpg) {
+		location ~* \.(js|css|jpeg|jpg|html) {
 			alias /home/mikhail/ask_pupkin/static;    			
+		}
+		location /uploads {
+			alias /home/mikhail/ask_pupkin/uploads;
 		}
 		
 	}
