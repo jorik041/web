@@ -1,35 +1,75 @@
- <HTML>
+    <DOCTYPE html>
+ {% extends "base.html" %}
 
-<HEAD>
-<style>
-h1 {
-	font-family: 'Comic Sans MS', cursive;	
-	color: pink;
-	font-size: 1300%;
-}
-</style>
-<script type="text/javascript">
-massive_length=2;/*устанавливаешь длинну массива, т.е. сколько цветов будет*/
-colors_= new Array(massive_length);
-colors_[0] = "black";
-colors_[1] = "white";
-var next_ = 0;
-function Changehead()
-{
-headcolor= colors_[next_];/*headcolor - переменной устанавливаешь новый цвет*/
+{% block main %}
 
-document.getElementById("head3").style.color=headcolor;/*присваеваешь этот цвет элементу в документе*/
-next_++;
-if(next_>massive_length-1) next_=0;
-window.setTimeout("Changehead()",175); /*спустя 1 секунду, меняешь цвет на новый, если нужно дольше, то ставишь число больше*/
-}
-</script>
+    <html>
+    <head>
+    <title>Ask Pupkin</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/style.css">
+    </head>
+    <body>
+    <div class="navbar">
+            <div class = "navbar-inner">
+                <a class="brand" href="#">Ask Pupkin</a>
+                <form class="navbar-form pull-left">
+                    <input type="text" class="search" placeholder="Search">
+                    <button type = "submit" class = "btn"> Submit </button>
+                </form>
+                <a href = "/ask/" class = "btn ask-btn"> ASK </a>
+            </div>     
+    </div>    
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <div>
+                    <h2>Best questions</h2>
+                    <div class="question">
+                      <div class="row">
+                        <div class="span2">
+                           <img src="http://lorempixel.com/120/120/" class="img-circle">
+                        </div>
+                        <div class="span7">
+                            <h4><a href = "#">How to make a Web project?</a></h4>
+                            <p>I should make a huge web-site within a month</p>
+                            <div>
+                                <h5><a href = "#">Answer<span class="badge badge-class">33</span></a></h5>
+                                Tags: First tag, Second Tag, Third Tag
+                            </div>
+                          </div>
+                        </div>
+                    </div>
 
-</HEAD>
-<BODY onload="Changehead();/*скрипт запускается когда документ загрузился полностью*/">
-<h1>
-<P id="head3">    Mail.ru</P>
-</font>
-</h1>
-</BODY>
-</HTML>
+                    <div class="pagination">
+                        <ul>
+                            <li><a href="#">Prev</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul>
+                </div>
+               </div>                    
+            </div>
+            <div class="span3">
+               <div>
+                    <h3>Popular tags</h3>
+                    <a href="#">Sex</a>
+                    <a href="#">Drugs</a>
+                    <a href="#">Rock'n'Roll</a>
+               </div>
+               <div>
+                    <h3>Popular users</h3>
+                    <ul>
+                        <li><a href="#">Me</a></li>
+                        <li><a href="#">Me</a></li>
+                        <li><a href="#">Me</a></li>
+                    </ul>
+               </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>

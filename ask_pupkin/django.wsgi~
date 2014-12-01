@@ -2,29 +2,32 @@
 from cgi import parse_qs
 
 #astr = "<html><body><h1>Hello World</h1></body></html>"
+from cgi import parse_qs
 
+def application(environ, start_response):
+	response_body = []
+	response_body.append('Hello wsgi & apache!\n')
 
-def application(env, start_response):
-	start_response('200 OK', [('Content-Type','text/plain')])
-	answer = env['REQUEST_METHOD'] + "\n" + env['PATH_INFO'] + "\n" + env['SERVER_PROTOCOL'] + "\n" + env['HTTP_USER_AGENT']
-	if env['REQUEST_METHOD'] == 'GET':
-		toparse = env['QUERY_STRING']
-		parsed = parse_qs(toparse)
-		answer = "Hello world \n \n"
-		for (param, value) in parsed.items():
-			answer += param
-			answer += ' = '
-			answer += parsed.get(param,[''])[0]
-			answer += '\n'
-	elif env['REQUEST_METHOD'] == 'POST':
-		length= int(env.get('CONTENT_LENGTH', '0'))
-		#answer = "Hello world \n \n"
-		answer = env['wsgi.input'].read(length)
-		toparse = answer
-		parsed = parse_qs(toparse)
-		for (param, value) in parsed.items():
-			answer += param
-			answer += ' = '
-			answer += parsed.get(param,[''])[0]
-			answer += '\n'
-	return [answer]
+	response_body.append(environ['REQUEST_METHOD'] + '\n')
+	
+	if environ['REQUEST_METHOD'] == 'GET':
+		request_body = parse_qs(environ['QUERY_STRING'])
+		for keys, values in request_body.items():
+			response_body.append('%s =\t\t%s\n' % (keys, values))
+
+	elif environ['REQUEST_METHOD'] == 'POST':
+		try:
+			request_body_size = int(environ.get('CONTENT_LENGTH', 0))
+		except (ValueError):
+			request_body_size = 0
+
+		request_body = parse_qs(environ['wsgi.input'].read(request_body_size))
+		for keys, values in request_body.items():
+			response_body.append('%s =\t\t%s\n' % (keys, values))
+
+	response_headers = [ ('Content-type', 'text/plain'),
+						('Content-Length', str(sum(len(line) for line in response_body))) ]
+	status = '200 OK'
+	start_response(status, response_headers)
+
+	return response_body
